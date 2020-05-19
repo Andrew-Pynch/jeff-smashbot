@@ -4,5 +4,6 @@ opencv-python
 pandas
 matplotlib
 numpy
-pytorche
+pytorch
 pillow
+pywin32

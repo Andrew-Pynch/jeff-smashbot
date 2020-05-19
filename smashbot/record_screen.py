@@ -1,29 +1,26 @@
+import time
 import cv2
 import numpy as np
 import pyautogui
+from utils.DataCollection import DataCollection
 
-# display screen resolution, get it from your OS settings
-SCREEN_SIZE = (1920, 1080)
-# define the codec
-fourcc = cv2.VideoWriter_fourcc(*"XVID")
-# create the video write object
-out = cv2.VideoWriter("output.avi", fourcc, 20.0, (SCREEN_SIZE))
 
-while True:
-    # make a screenshot
-    img = pyautogui.screenshot(region=(0, 250, 1800, 800))
-    # convert these pixels to a proper numpy array to work with OpenCV
-    frame = np.array(img)
-    # convert colors from BGR to RGB
-    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    # write the frame
-    out.write(frame)
-    # show the frame
-    cv2.imshow("screenshot", frame)
-    # if the user clicks q, it exits
-    if cv2.waitKey(1) == ord("q"):
-        break
+# def record():
+#     while True:
+#         dc = DataCollection()
+#         screen = dc.GrabScreen(region=(400, 40, 1500, 1000))
+#         last_time = time.time()
 
-# make sure everything is closed when exited
-cv2.destroyAllWindows()
-out.release()
+#         # Resize to something a little smaller for now
+#         screen = cv2.resize(screen, (480, 270))
+
+#         cv2.imshow('view', screen)
+
+#         if cv2.waitKey(25) & 0xFF == ord('q'):
+#             cv2.destroyAllWindows()
+#             break
+
+
+if __name__ == '__main__':
+    dc = DataCollection()
+    dc.Record(region=(400, 40, 1500, 1000))
