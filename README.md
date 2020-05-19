@@ -3,7 +3,7 @@
 SOTA SSBM A.I Trained with Reinforcement Learning &amp; Deep Learning Techniques
 
 This will be my agent in a couple of weeks / months ;-) 
-![img]()
+![img](https://github.com/Andrew-Pynch/smashbot/blob/master/visualizations/source.gif?raw=true)
 
 # Planned architecture
 Previous approaches have enabled hard coded predefined movesets for a learner to
