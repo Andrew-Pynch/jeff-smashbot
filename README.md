@@ -6,6 +6,12 @@ This will be my agent in a couple of weeks / months ;-)
 
 ![img](https://github.com/Andrew-Pynch/smashbot/blob/master/visualizations/source.gif?raw=true)
 
+# Getting Started
+If you want to try this out for yourself, get started by running
+```sh
+pip3 install -r requirements.txt
+```
+
 # Planned architecture
 Previous approaches have enabled hard coded predefined movesets for a learner to
 take. This might involve hard coding the exact inputs for a wavedash etc. Additionally, previous approaches all have relied on directly reading from an
