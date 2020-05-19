@@ -1,1 +1,1 @@
-# Forked From - [](https://github.com/altf4/SmashBot)
+# Forked From - [Repo](https://github.com/altf4/SmashBot)
