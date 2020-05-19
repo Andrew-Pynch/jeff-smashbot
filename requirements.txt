@@ -1,6 +1,8 @@
+pyautogui
 melee
 opencv-python
 pandas
 matplotlib
 numpy
 pytorche
+pillow

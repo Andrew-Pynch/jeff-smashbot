@@ -26,6 +26,8 @@ game.
 # TODO
 
 * [X] Get libmelee installed - NOTE: This is just to send inputs
+* [ ] Faster way to get pixel data than pyautogui. Screenshots take 100ms. Might
+need to switch to windows and use win32lib-grab_screen function I have...
 * [ ] Programmatically take actions just to validate I can properly send inputs
 to the emulator
 * [ ] Build damage perception model to predict the damage of P1 & P2 at any frame
