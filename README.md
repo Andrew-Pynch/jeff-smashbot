@@ -44,5 +44,9 @@ enemy damage while minimizing our damage??)
 * [ ] Build model that takes in pixel data and damage prediction models predictions, 
 and learns the best outputs through policy gradients or other SOTA techniques in RL?
 
+# Sources
+
+### Dolphin install - [Project Slippi Linux](https://github.com/project-slippi/Slippi-FM-installer)
+
 
 
