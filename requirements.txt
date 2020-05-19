@@ -1,3 +1,4 @@
+scalary
 pyautogui
 melee
 opencv-python
