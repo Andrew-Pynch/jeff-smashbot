@@ -1,1 +1,0 @@
-# Forked From - [Repo](https://github.com/altf4/SmashBot)
