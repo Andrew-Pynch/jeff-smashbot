@@ -31,7 +31,7 @@ need to switch to windows and use win32lib-grab_screen function I have...
 This one actually turned into a library [repolink](https://github.com/Andrew-Pynch/scalary)
 * [ ] Programmatically take actions just to validate I can properly send inputs
 to the emulator
-* [ ] Build damage perception model to predict the damage of P1 & P2 at any frame
+* [ ] Implement [curiosity driven exploration by self supervised prediction](https://pathak22.github.io/noreward-rl/resources/icml17.pdf). This paper provides great direction for this project if implemented properly :D`
 
 # The two routes
 Once we have a way to detect player health 
