@@ -1,9 +1,17 @@
 import time
+
 import cv2
-import numpy as np
-from scalary import DataCollection
+import mss
+import numpy
+
+from utils import SmashRecord
 
 
-if __name__ == '__main__':
-    dc = DataCollection()
-    dc.Record(region=(400, 40, 1500, 1000), resize=(480, 270))
+def main():
+    while True:
+        img = SmashRecord()
+        cv2.imshow('game window', img)
+
+
+if __name__ == "__main__":
+    main()
