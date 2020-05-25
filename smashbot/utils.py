@@ -8,7 +8,7 @@ import numpy
 def SmashRecord():
     with mss.mss() as sct:
         # Part of the screen to capture
-        monitor = {"top": 40, "left": 359, "width": 1200, "height": 1000}
+        monitor = {"top": 440, "left": 375, "width": 1150, "height": 960}
 
     while "Screen capturing":
         last_time = time.time()
@@ -17,13 +17,6 @@ def SmashRecord():
         img = numpy.array(sct.grab(monitor))
 
         img = cv2.resize(img, (480, 270))
-
-        # Display the picture
-        # cv2.imshow("OpenCV/Numpy normal", img)
-
-        # Display the picture in grayscale
-        # cv2.imshow('OpenCV/Numpy grayscale',
-        #            cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY))
 
         print("fps: {}".format(1 / (time.time() - last_time)))
 

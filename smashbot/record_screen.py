@@ -10,7 +10,7 @@ from utils import SmashRecord
 def main():
     while True:
         img = SmashRecord()
-        cv2.imshow('game window', img)
+        cv2.imshow("game window", img)
 
 
 if __name__ == "__main__":
