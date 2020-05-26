@@ -1,3 +1,13 @@
+# NOTICE:
+I have to pause development on this while waiting for some depencies to improve their stability. Specifically,
+- [Project Slippi](https://github.com/project-slippi/project-slippi)
+    - Fork of dolphin emulator with some cool functionality
+- [Libmelee](https://github.com/altf4/libmelee)
+    - High level API for interfacing with project slippi
+
+Both of these are extremely unstable in their current forms. Experimentation is difficult with regular seg faults etc.
+I will return to this project when these codebases have their next major release (probably this summer according to the devs)
+
 # smashbot
 
 SOTA SSBM A.I Trained with Reinforcement Learning &amp; Deep Learning Techniques
