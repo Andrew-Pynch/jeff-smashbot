@@ -160,12 +160,14 @@ else:
 #   Due to how named pipes work, this has to come AFTER running dolphin
 #   NOTE: If you're loading a movie file, don't connect the controller,
 #   dolphin will hang waiting for input and never receive it
-controller.connect()
-if not controller.connect():
-    print("ERROR: Failed to connect the controller.")
-    sys.exit(-1)
-else:
-    print("Controller connected")
+
+# print("Pre controller connection")
+# if not controller.connect():
+#     print("ERROR: Failed to connect the controller.")
+#     sys.exit(-1)
+# else:
+#     print("Controller connected")
+# print("Post controller connection try")
 
 i = 0
 # Main loop
@@ -173,6 +175,7 @@ while True:
     i += 1
     # "step" to the next frame
     gamestate = console.step()
+    print(gamestate.opponent_state.action)
     melee.techskill.multishine(ai_state=gamestate.ai_state, controller=controller)
 
     if console.processingtime * 1000 > 12:

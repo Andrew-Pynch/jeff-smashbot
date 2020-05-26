@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from melee import *
+import melee
 import argparse
 import signal
 import os
@@ -8,17 +8,12 @@ import sys
 # This example program demonstrates how to use the Melee API to run a console,
 #   setup controllers, and send button presses over to a console (dolphin or Slippi/Wii)
 
-
 def check_port(value):
     ivalue = int(value)
     if ivalue < 1 or ivalue > 4:
-        raise argparse.ArgumentTypeError(
-            "%s is an invalid controller port. \
-         Must be 1, 2, 3, or 4."
-            % value
-        )
+         raise argparse.ArgumentTypeError("%s is an invalid controller port. \
+         Must be 1, 2, 3, or 4." % value)
     return ivalue
-
 
 def is_dir(dirname):
     """Checks if a path is an actual directory"""
@@ -28,58 +23,30 @@ def is_dir(dirname):
     else:
         return dirname
 
-
-parser = argparse.ArgumentParser(description="Example of libmelee in action")
-parser.add_argument(
-    "--port",
-    "-p",
-    type=check_port,
-    help="The controller port (1-4) your AI will play on",
-    default=2,
-)
-parser.add_argument(
-    "--opponent",
-    "-o",
-    type=check_port,
-    help="The controller port (1-4) the opponent will play on",
-    default=1,
-)
-parser.add_argument(
-    "--live", "-l", help="The opponent is playing live with a GCN Adapter", default=True
-)
-parser.add_argument(
-    "--debug",
-    "-d",
-    action="store_true",
-    help="Debug mode. Creates a CSV of all game states",
-)
-parser.add_argument(
-    "--framerecord",
-    "-r",
-    default=False,
-    action="store_true",
-    help="(DEVELOPMENT ONLY) Records frame data from the match,"
-    "stores into framedata.csv.",
-)
-parser.add_argument(
-    "--console",
-    "-c",
-    default="dolphin",
-    help="Do you want to play on an Emulator (dolphin) or " "hardware console (wii)",
-)
-parser.add_argument("--address", "-a", default="", help="IP address of Slippi/Wii")
-parser.add_argument(
-    "--configdir",
-    "-n",
-    type=is_dir,
-    help="Manually specify the Dolphin config directory to use",
-)
-parser.add_argument(
-    "--homedir",
-    "-m",
-    type=is_dir,
-    help="Manually specify the Dolphin home directory to use",
-)
+parser = argparse.ArgumentParser(description='Example of libmelee in action')
+parser.add_argument('--port', '-p', type=check_port,
+                    help='The controller port (1-4) your AI will play on',
+                    default=2)
+parser.add_argument('--opponent', '-o', type=check_port,
+                    help='The controller port (1-4) the opponent will play on',
+                    default=1)
+parser.add_argument('--live', '-l',
+                    help='The opponent is playing live with a GCN Adapter',
+                    default=True)
+parser.add_argument('--debug', '-d', action='store_true',
+                    help='Debug mode. Creates a CSV of all game states')
+parser.add_argument('--framerecord', '-r', default=False, action='store_true',
+                    help='(DEVELOPMENT ONLY) Records frame data from the match,' \
+                    'stores into framedata.csv.')
+parser.add_argument('--console', '-c', default="dolphin",
+                    help='Do you want to play on an Emulator (dolphin) or ' \
+                    'hardware console (wii)')
+parser.add_argument('--address', '-a', default="",
+                    help='IP address of Slippi/Wii')
+parser.add_argument('--configdir', '-n', type=is_dir,
+                    help='Manually specify the Dolphin config directory to use')
+parser.add_argument('--homedir', '-m', type=is_dir,
+                    help='Manually specify the Dolphin home directory to use')
 
 args = parser.parse_args()
 
@@ -110,15 +77,13 @@ elif args.console != "dolphin":
 #   The Console represents the virtual or hardware system Melee is playing on.
 #   Through this object, we can get "GameState" objects per-frame so that your
 #       bot can actually "see" what's happening in the game
-console = melee.console.Console(
-    ai_port=args.port,
-    is_dolphin=True,
-    opponent_port=args.opponent,
-    opponent_type=opponent_type,
-    config_path=args.configdir,
-    home_path=args.homedir,
-    logger=log,
-)
+console = melee.console.Console(ai_port=args.port,
+                                is_dolphin=True,
+                                opponent_port=args.opponent,
+                                opponent_type=opponent_type,
+                                config_path=args.configdir,
+                                home_path=args.homedir,
+                                logger=log)
 
 # Dolphin has an optional mode to not render the game's visuals
 #   This is useful for BotvBot matches
@@ -134,18 +99,16 @@ console.slippi_address = args.address
 #   virtual or physical.
 controller = melee.controller.Controller(port=args.port, console=console)
 
-
 def signal_handler(signal, frame):
     console.stop()
     if args.debug:
         log.writelog()
-        print("")  # because the ^C will be on the terminal
+        print("") #because the ^C will be on the terminal
         print("Log file created: " + log.filename)
     print("Shutting down cleanly...")
     if args.framerecord:
         framedata.saverecording()
     sys.exit(0)
-
 
 signal.signal(signal.SIGINT, signal_handler)
 
@@ -153,19 +116,14 @@ signal.signal(signal.SIGINT, signal_handler)
 if not console.connect():
     print("ERROR: Failed to start / connect to the console.")
     sys.exit(-1)
-else:
-    print("Console connected")
 
 # Plug our controller in
 #   Due to how named pipes work, this has to come AFTER running dolphin
 #   NOTE: If you're loading a movie file, don't connect the controller,
 #   dolphin will hang waiting for input and never receive it
-controller.connect()
 if not controller.connect():
     print("ERROR: Failed to connect the controller.")
     sys.exit(-1)
-else:
-    print("Controller connected")
 
 i = 0
 # Main loop
@@ -175,12 +133,9 @@ while True:
     gamestate = console.step()
     melee.techskill.multishine(ai_state=gamestate.ai_state, controller=controller)
 
-    if console.processingtime * 1000 > 12:
-        print(
-            "WARNING: Last frame took "
-            + str(console.processingtime * 1000)
-            + "ms to process."
-        )
+    if(console.processingtime * 1000 > 12):
+        print("WARNING: Last frame took " +
+            str(console.processingtime*1000) + "ms to process.")
 
     # TODO FOR LATER
     #   We don't have menu information (yet) with slippi
