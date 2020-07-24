@@ -1,5 +1,5 @@
 # NOTICE:
-I have to pause development on this while waiting for some depencies to improve their stability. Specifically,
+I have to pause development on this while waiting for some dependencies to improve their stability. Specifically,
 - [Project Slippi](https://github.com/project-slippi/project-slippi)
     - Fork of dolphin emulator with some cool functionality
 - [Libmelee](https://github.com/altf4/libmelee)
